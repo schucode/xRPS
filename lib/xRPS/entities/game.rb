@@ -14,9 +14,15 @@ class Game
     @winner = :tbd
   end 
 
-  def play()
-
-  end
+  def play(move1, move2)          # player parameters instead?
+    if @rules[move1] == move2
+      return move1
+    elsif @rules[move2] == move1
+      return move2
+    elsif @rules[move2] == @rules[move1]
+      return :tie
+    end
+  end  
 
 end # class end
 
