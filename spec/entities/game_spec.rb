@@ -12,4 +12,7 @@ describe 'Game' do
     expect(@game).to be_a(Game)
   end
 
+  it "produces a winner" do
+  end
+
 end
