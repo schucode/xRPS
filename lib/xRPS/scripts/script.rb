@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 module RPS
   class Script 
 
@@ -32,4 +34,9 @@ module RPS
     end
 
   end # class end
+
+  def self.script
+    @__db_instance ||= Script.new
+  end
+
 end # module end

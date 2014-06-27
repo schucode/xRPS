@@ -1,6 +1,6 @@
 module RPS
   class Match
-    attr_accessor :user1, :user2, :history
+    attr_accessor :player1, :player2, :history
 
     def initialize(player1=nil, player2=nil)
       @player1 = player1
