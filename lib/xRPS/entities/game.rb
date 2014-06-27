@@ -2,7 +2,6 @@ module RPS
   class Game
     attr_accessor :user1, :user2, :round, :rules
 
-
     def initialize(user1, user2)
       @user1 = user1
       @user2 = user2

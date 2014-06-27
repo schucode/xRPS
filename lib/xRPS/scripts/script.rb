@@ -3,35 +3,49 @@ require 'pry-byebug'
 module RPS
   class Script 
 
-            # USER ACTIONS
+            # USER LOG IN
 
-    # input params {:username =>, }
+    def sign_up(input)
+
+    end
+
+    def sign_in(input)
+
+    end
+
+
+            # USER PLAY ACTIONS
+
+    # input params {:user_id =>, }
     def run_start_match(input)
-      username = input[:username]
-      match = RPS::Match.new(username)
-      match.player1 = input[:username]
+      user_id = input[:user_id]
+      match = RPS::Match.new(user)
+      match.player1 = input[:user_id]
       match
     end
 
-    # input params {:username =>, :match =>}
+    # input params {:user_id =>, :match_id =>}
     def run_join_match(input)
-      username = input[:username]
-      match = input[:match]
-      match.player2 = input[:username]
+      user_id = input[:user_id]
+      match_id = input[:match_id]
+      match.player2 = input[:user_id]
+       # database
     end
 
-    # input params {:match => , :user1 =>, :user2 => }
+    # input params {:match_id =>, :user1_id =>, :user2_id => }
     def run_start_game(input)
       game = RPS::Game.new(input[:user1], input[:user2])
       match = input[:match]
       match.history << input[:match]
     end
 
-    # input params {:match => , :game=>, :user1 =>, :user2 => }
+    # input params {:match =>, :game=>, :user1 =>, :user2 => }
     def run_play_game(input)
       match = input[:match]
       game = input[:game]
     end
+
+
 
   end # class end
 
