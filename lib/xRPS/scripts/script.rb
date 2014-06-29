@@ -36,7 +36,8 @@ module RPS
       user_pass = Digest::SHA1.hexdigest(password)
 
       if actual_pass == user_pass
-        {:success? => true}
+        new_user = RPS::User.new(username)
+        {:success? => true, :user => new_user}
       else
         {:success? => false, :error => "either the username or password is wrong"}
       end
@@ -46,12 +47,15 @@ module RPS
             # USER PLAY ACTIONS
 
     # input params {:user_id =>, }
-    def run_start_match(input)
+    def start_match(input)
       user_id = input[:user_id]
       match = RPS::Match.new(user)
       match.player1 = input[:user_id]
       match
     end
+
+
+
 
     # input params {:user_id =>, :match_id =>}
     def run_join_match(input)

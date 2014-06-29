@@ -1,7 +1,7 @@
 
 module RPS
   class User
-    attr_reader :id, :username, :password_digest
+    attr_reader :username, :password_digest
 
     def initialize(username, password_digest=nil)
       @username = username
