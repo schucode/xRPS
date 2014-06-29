@@ -24,7 +24,7 @@ module RPS
     end
 
     def username_exist?(username)
-      command =<<-sQL
+      command = <<-sQL
         SELECT * FROM users WHERE username='#{username}'
         sQL
       result = @db.exec(command)
@@ -33,6 +33,14 @@ module RPS
       else
         true
       end
+    end
+
+    def add_user(username, password_digest)
+      command = <<-sQL
+        INSERT INTO users (username, password) VALUES
+        ('#{username}', '#{password_digest}')
+        sQL
+      @db.exec(command)
     end
 
 

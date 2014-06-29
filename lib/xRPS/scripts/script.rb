@@ -1,5 +1,6 @@
+
 require 'pry-byebug'
-#require_relative './orm.rb'
+
 
 
 module RPS
@@ -9,8 +10,17 @@ module RPS
 
     #input params {:usernmae =>, :password=> }
     def sign_up(input)
-      #username = input[:username]
-      return RPS.orm.username_exist?(input)
+      username = input[:username]
+      password = input[:password]
+      result =  RPS.orm.username_exist?(input)
+      if !result
+        new_user = RPS::User.new(username)
+        new_user.update_password(password)
+        RPS.orm.add_user(username, new_user.password_digest)
+        {:success? => true}
+      else
+        {:success? => false, :error => "username already taken"}
+      end
     end
 
     def sign_in(input)
