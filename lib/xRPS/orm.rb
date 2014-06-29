@@ -43,6 +43,13 @@ module RPS
       @db.exec(command)
     end
 
+    def get_pass(username)
+      command = <<-sQL
+        SELECT password FROM users WHERE username='#{username}'
+        sQL
+      result = @db.exec(command)
+      result[0]["password"]
+    end
 
   end # class end
 

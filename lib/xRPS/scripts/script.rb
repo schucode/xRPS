@@ -12,9 +12,9 @@ module RPS
     def sign_up(input)
       username = input[:username]
       password = input[:password]
-      result =  RPS.orm.username_exist?(input)
+      result =  RPS.orm.username_exist?(username)
       if !result
-        new_user = RPS::User.new(username)
+        new_user = RPS::User.new(username) 
         new_user.update_password(password)
         RPS.orm.add_user(username, new_user.password_digest)
         {:success? => true}
@@ -23,8 +23,23 @@ module RPS
       end
     end
 
+    #input params {:usernmae =>, :password=> }
     def sign_in(input)
+      username = input[:username]
+      password = input[:password]
+      result = RPS.orm.username_exist?(username)
+      if !result
+        {:success? => false, :error => "either the username or password is wrong"}
+      end
 
+      actual_pass = RPS.orm.get_pass(username)
+      user_pass = Digest::SHA1.hexdigest(password)
+
+      if actual_pass == user_pass
+        {:success? => true}
+      else
+        {:success? => false, :error => "either the username or password is wrong"}
+      end
     end
 
 
