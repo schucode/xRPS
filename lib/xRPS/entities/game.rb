@@ -1,10 +1,10 @@
 module RPS
   class Game
-    attr_accessor :user1, :user2, :round, :rules
+    attr_accessor :player1, :player2, :winner, :rules
 
-    def initialize(user1, user2)
-      @user1 = user1
-      @user2 = user2
+    def initialize(player1, player2)
+      @player2 = player1
+      @player2 = player2
       @rules = {:rock => :scissors,             # key beats value
                 :scissors => :paper,
                 :paper => :rock}
@@ -19,7 +19,8 @@ module RPS
       elsif @rules[move2] == @rules[move1]
         return :tie
       end
-    end  
+    end 
+
   end # class end
 end # module end
 

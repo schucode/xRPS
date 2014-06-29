@@ -1,12 +1,16 @@
 require 'pry-byebug'
+#require_relative './orm.rb'
+
 
 module RPS
   class Script 
 
             # USER LOG IN
 
+    #input params {:usernmae =>, :password=> }
     def sign_up(input)
-
+      #username = input[:username]
+      return RPS.orm.username_exist?(input)
     end
 
     def sign_in(input)
@@ -43,6 +47,7 @@ module RPS
     def run_play_game(input)
       match = input[:match]
       game = input[:game]
+
     end
 
 
