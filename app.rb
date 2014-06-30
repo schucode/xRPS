@@ -37,6 +37,7 @@ post '/signin' do
   if result[:success?]
     user = result[:user]
     @username = user.username
+    @user_id = user.id
     erb :user_home    
   else
     @error = result[:error]
@@ -44,7 +45,15 @@ post '/signin' do
   end
 end
 
-get '/start_match/:username' do
-  
+get '/start_match/:userid' do
   #RPS::script.start_match()
+  @getid = params
+  erb :start_match
 end
+
+# get '/test/:stuff' do
+#   @result = params[:stuff]
+#   erb :test
+# end
+
+

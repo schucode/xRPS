@@ -51,6 +51,14 @@ module RPS
       result[0]["password"]
     end
 
+    def get_userid(username)
+      command = <<-sQL
+        SELECT id FROM users WHERE username='#{username}'
+        sQL
+      result = @db.exec(command)
+      result[0]["id"]
+    end
+
   end # class end
 
   def self.orm

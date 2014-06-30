@@ -1,11 +1,12 @@
 
 module RPS
   class User
-    attr_reader :username, :password_digest
+    attr_accessor :id, :username, :password_digest
 
     def initialize(username, password_digest=nil)
       @username = username
       @password_digest = password_digest
+      @id = nil
     end
 
     def update_password(password)

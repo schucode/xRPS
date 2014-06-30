@@ -37,6 +37,7 @@ module RPS
 
       if actual_pass == user_pass
         new_user = RPS::User.new(username)
+        new_user.id = RPS.orm.get_userid(username)
         {:success? => true, :user => new_user}
       else
         {:success? => false, :error => "either the username or password is wrong"}
