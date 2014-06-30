@@ -7,7 +7,11 @@ set :bind, '0.0.0.0'
 enable :sessions
 
 get '/' do
+  # if session[:user_id]
+  #   user = 
   # session[:stuff] ||= "morestuff"
+  # is the user in the session hash?
+  # redirect to erb :user_home
   erb :start
 end
 
@@ -46,14 +50,10 @@ post '/signin' do
 end
 
 get '/start_match/:userid' do
-  #RPS::script.start_match()
+
   @getid = params
+  RPS::script.start_match()
   erb :start_match
 end
-
-# get '/test/:stuff' do
-#   @result = params[:stuff]
-#   erb :test
-# end
 
 

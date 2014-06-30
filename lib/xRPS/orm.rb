@@ -48,7 +48,11 @@ module RPS
         SELECT password FROM users WHERE username='#{username}'
         sQL
       result = @db.exec(command)
-      result[0]["password"]
+      if result.ntuples == 0
+        false
+      else
+        result[0]["password"]
+      end
     end
 
     def get_userid(username)
