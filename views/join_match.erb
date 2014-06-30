@@ -1,0 +1,13 @@
+<h1> Available Matches </h1>
+
+
+
+<form method="post" action="/iplay">
+	<% @result.each do |result| %>
+		<input type="radio" name="match_id" value="<%= result['id'] %>" >
+		&nbsp;<%= result['player1'] %>'s match. 
+		<br>
+	<% end %>
+	<input type="hidden" name="username" value="<%= @username %>">
+	<input type="submit" >
+</form>

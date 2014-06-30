@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pry-byebug'
 require_relative './lib/xRPS.rb'
 
 
@@ -7,12 +8,18 @@ set :bind, '0.0.0.0'
 enable :sessions
 
 get '/' do
-  # if session[:user_id]
-  #   user = 
-  # session[:stuff] ||= "morestuff"
-  # is the user in the session hash?
-  # redirect to erb :user_home
-  erb :start
+  # binding.pry
+  if session[:username]
+    @username = session[:username]
+    erb :user_home
+  else
+    erb :start
+  end
+end
+
+post '/logout' do
+  session.clear
+  redirect to '/'
 end
 
 get '/signup' do
@@ -42,18 +49,41 @@ post '/signin' do
     user = result[:user]
     @username = user.username
     @user_id = user.id
-    erb :user_home    
+    session[:username] = user.username
+    erb :user_home
+    # binding.pry 
   else
     @error = result[:error]
     erb :signin_error
   end
 end
 
-get '/start_match/:userid' do
 
-  @getid = params
-  RPS::script.start_match()
-  erb :start_match
+
+
+post '/newmatch' do
+  # params = {:username =>, }
+  RPS.script.start_match(params)
+  @message = params
+  erb :create_match
+end
+
+post '/joinmatch' do
+  @result = RPS.script.show_open_matches
+  @username = params[:username]
+  erb :join_match
+end
+
+post '/currentmatch' do
+  @result = RPS.script.show_current_matches(params)
+  @username = params[:username]
+  erb :current_match
 end
 
 
+post '/play_joined_match' do
+  RPS.script.join_match(params)
+  @player1 = RPS.script.get_player1(params[:match_id])
+  @player2 = params[:username]
+ 
+end

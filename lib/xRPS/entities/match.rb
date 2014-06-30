@@ -1,12 +1,23 @@
 module RPS
   class Match
-    attr_accessor :player1, :player2, :history
+    @@open_matches = []
+    @@closed_matches = []
+
+    attr_accessor :player1, :player2, :history, :open
 
     def initialize(player1=nil, player2=nil)
       @player1 = player1
       @player2 = player2
       @history = []
       @open = true
+    end
+
+    def self.open_matches
+      @@open_matches
+    end
+
+    def self.closed_matches
+      @@closed_matches
     end
 
   end

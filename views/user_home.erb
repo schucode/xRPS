@@ -3,7 +3,26 @@
 <h3>What would you like to do today?</h3>
 
 
-<h4><a href="start_match/:<%= @user_id %>">Start New Match</a></h4>
+<!-- <h4><a href="start_match/:<%= @user_id %>">Start New Match</a></h4> -->
+
+<form method="post" action="/newmatch">
+	<input type="hidden" name="username" value="<%= @username %>">
+	<input type="submit" value="Start New Match">
+</form>
 
 
-<h4>Join Open Match</h4>
+<form method="post" action="/joinmatch">
+	<input type="hidden" name="username" value="<%= @username %>">
+	<input type="submit" value="Join Match">
+</form>
+
+
+<form method="post" action="/currentmatch">
+	<input type="hidden" name="username" value="<%= @username %>">
+	<input type="submit" value="Resume Match">
+</form>
+
+
+<form method="post" action="/logout">
+	<input type="submit" value="Log Out">
+</form>

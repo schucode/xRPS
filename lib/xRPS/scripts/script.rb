@@ -38,6 +38,7 @@ module RPS
       if actual_pass == user_pass
         new_user = RPS::User.new(username)
         new_user.id = RPS.orm.get_userid(username)
+
         {:success? => true, :user => new_user}
       else
         {:success? => false, :error => "either the username or password is wrong"}
@@ -49,36 +50,54 @@ module RPS
 
     # input params {:user_id =>, }
     def start_match(input)
-      user_id = input[:user_id]
-      match = RPS::Match.new(user)
-      match.player1 = input[:user_id]
-      match
+      username = input[:username]
+      RPS::orm.add_match(username)
+      match = RPS::Match.new()
+      match.player1 = username
+      match.open = true
     end
 
-
-
+    def show_open_matches
+      result = RPS.orm.get_open_matches
+      result
+    end
 
     # input params {:user_id =>, :match_id =>}
-    def run_join_match(input)
-      user_id = input[:user_id]
+    def join_match(input)
+      username = input[:username]
       match_id = input[:match_id]
-      match.player2 = input[:user_id]
-       # database
+      RPS.orm.set_player2(username, match_id)
     end
+
+    def get_player1(match_id)
+      result = RPS.orm.match_player1(match_id)
+      result[0]["player1"]
+    end
+
+    def show_current_matches(input)
+      username = input[:username]
+      result = RPS.orm.get_current_matches(username)
+      result
+    end
+
+    
+
+
+
+
 
     # input params {:match_id =>, :user1_id =>, :user2_id => }
-    def run_start_game(input)
-      game = RPS::Game.new(input[:user1], input[:user2])
-      match = input[:match]
-      match.history << input[:match]
-    end
+    # def run_start_game(input)
+    #   game = RPS::Game.new(input[:user1], input[:user2])
+    #   match = input[:match]
+    #   match.history << input[:match]
+    # end
 
-    # input params {:match =>, :game=>, :user1 =>, :user2 => }
-    def run_play_game(input)
-      match = input[:match]
-      game = input[:game]
-
-    end
+    # # input params {:match =>, :game=>, :user1 =>, :user2 => }
+    # def run_play_game(input)
+    #   match = input[:match]
+    #   game = input[:game]
+    # end
 
 
 

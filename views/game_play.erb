@@ -1,0 +1,19 @@
+<div>
+    <h1 class="text-centered"><strong>Pick Your Ammo</strong> <%= @first_name %></h1>
+</div>
+ 
+<div class="row">
+    <% if @player1 %>
+        <%= erb :_play_moves %>
+    <% else %>
+        <%= erb :_question_mark %>
+    <% end %>
+    <div class="large-4 columns verses">
+        <h1 class="text-centered">versus</h1>
+    </div>
+    <% if @player2 %>
+        <%= erb :_play_moves %>
+    <% else %>
+        <%= erb :_question_mark %>
+    <% end %>
+</div>
