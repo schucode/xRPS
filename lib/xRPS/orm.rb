@@ -1,4 +1,5 @@
 require 'pg'
+require 'pry-byebug'
 
 module RPS
 
@@ -90,8 +91,7 @@ module RPS
 
     def set_player2(username, match_id)
       command = <<-sQL
-        UPDATE matches SET player2='#{username}', open=false 
-        WHERE id='#{match_id}'
+        UPDATE matches SET player2='#{username}' WHERE id='#{match_id}'
         sQL
       @db.exec(command)
     end
@@ -106,6 +106,13 @@ module RPS
     def match_player1(match_id)
       command = <<-sQL
         SELECT player1 FROM matches WHERE id='#{match_id}'
+        sQL
+      @db.exec(command)
+    end
+
+    def get_whole_match(match_id)
+      command = <<-sQL
+        SELECT * FROM matches WHERE id='#{match_id}'
         sQL
       @db.exec(command)
     end
