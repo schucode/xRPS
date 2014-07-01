@@ -95,6 +95,7 @@ post '/iplay' do
   result = RPS.script.join_match(params, @username)
   @player1 = result[0]['player1']
   @player2 = result[0]['player2']
+  
   RPS.script.play_turn(@username)
 
   erb :game_play

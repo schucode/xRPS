@@ -33,6 +33,27 @@ module RPS
           PRIMARY KEY(id))
         sQL
       @db.exec(command) 
+
+      command = <<-sQL
+        CREATE TABLE IF NOT EXISTS moves (
+          id SERIAL, 
+          user_id text,
+          game_id text, 
+          move text,
+          PRIMARY KEY(id))
+        sQL
+      @db.exec(command) 
+
+      command = <<-sQL
+        CREATE TABLE IF NOT EXISTS moves (
+          id SERIAL, 
+          user_id text,
+          game_id text, 
+          move text,
+          PRIMARY KEY(id))
+        sQL
+      @db.exec(command) 
+
     end
 
     def username_exist?(username)
