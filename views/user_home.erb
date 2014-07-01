@@ -1,28 +1,40 @@
-<h1>Welcome: <%= @username %></h1>
+<br>
+<br>
 
-<h3>What would you like to do today?</h3>
+<h1 align="center"><strong>Welcome Back</strong> <%= @username %></h1>
+<br>
+<br>
+<div class="row">
+	<div class="large-5 large-centered columns">
+		<a href="#" data-dropdown="drop1" class="button dropdown">What would you like to do today?</a>
+		<br>
+		<ul id="drop1" data-dropdown-content class="f-dropdown">
+
+		  <li><form method="post" action="/newmatch">
+						<input type="hidden" name="username" value="<%= @username %>">
+						<input type="submit" value="Start New Match">
+					</form>
+			</li>
+
+		  <li>
+		  	<form method="post" action="/joinmatch">
+		  		<input type="hidden" name="username" value="<%= @username %>">
+		  		<input type="submit" value="Join Match">
+		  	</form>
+		  </li>
+
+		  <li>
+		  	<form method="post" action="/currentmatch">
+		  		<input type="hidden" name="username" value="<%= @username %>">
+		  		<input type="submit" value="Resume Match">
+		  	</form>
+		  </li>
+
+		</ul>
+	</div>
+</div>
 
 
-<!-- <h4><a href="start_match/:<%= @user_id %>">Start New Match</a></h4> -->
-
-<form method="post" action="/newmatch">
-	<input type="hidden" name="username" value="<%= @username %>">
-	<input type="submit" value="Start New Match">
-</form>
 
 
-<form method="post" action="/joinmatch">
-	<input type="hidden" name="username" value="<%= @username %>">
-	<input type="submit" value="Join Match">
-</form>
 
-
-<form method="post" action="/currentmatch">
-	<input type="hidden" name="username" value="<%= @username %>">
-	<input type="submit" value="Resume Match">
-</form>
-
-
-<form method="post" action="/logout">
-	<input type="submit" value="Log Out">
-</form>

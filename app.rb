@@ -12,7 +12,6 @@ get '/' do
   if session[:username]
     @username = session[:username]
     redirect to '/userhome'
-    #erb :user_home
   else
     erb :start
   end

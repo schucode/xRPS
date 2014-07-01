@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RPS Xtreme!</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.css">
+  <title>RPS Classic</title>
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.css"> -->
+  <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="/css/custom.css">
+
 </head>
 <body>
-	
+		<%= erb :header %>
   	<%= yield %>
   
+  <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/foundation.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/foundation.init.js"></script>
 </body>
 </html>
