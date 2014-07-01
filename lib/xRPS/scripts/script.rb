@@ -50,7 +50,7 @@ module RPS
 
     # input params {:user_id =>, }
     def start_match(input)
-      username = input[:username]
+      username = input
       RPS::orm.add_match(username)
       match = RPS::Match.new()
       match.player1 = username
@@ -63,10 +63,13 @@ module RPS
     end
 
     # input params {:user_id =>, :match_id =>}
-    def join_match(input)
-      username = input[:username]
-      match_id = input[:match_id]
+    def join_match(params, username)
+      username = username
+      match_id = params[:match_id]
       RPS.orm.set_player2(username, match_id)
+      RPS.orm.close_match(match_id)
+      result = RPS.orm.get_whole_match(match_id)
+      result
     end
 
     def get_player1(match_id)

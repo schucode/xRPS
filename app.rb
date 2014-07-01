@@ -8,7 +8,6 @@ set :bind, '0.0.0.0'
 enable :sessions
 
 get '/' do
-  # binding.pry
   if session[:username]
     @username = session[:username]
     redirect to '/userhome'
@@ -44,6 +43,7 @@ end
 
 post '/signin' do
   # params = {:username =>, :password => }
+  # binding.pry
   result = RPS.script.sign_in(params)
   if result[:success?]
     user = result[:user]
@@ -51,7 +51,6 @@ post '/signin' do
     @user_id = user.id
     session[:username] = user.username
     redirect '/userhome'
-    # binding.pry 
   else
     @error = result[:error]
     erb :signin_error
@@ -63,41 +62,45 @@ post '/userhome' do
   erb :user_home
 end
 
-# get '/userhome' do
-#   erb :user_home
-# end
+get '/userhome' do
+  @username = session[:username] 
+  erb :user_home
+end
 
 
 
 
-post '/newmatch' do
-  #{username=> }
-  RPS.script.start_match(params)
-  @message = params
+get '/newmatch' do
+  @username = session[:username]
+  RPS.script.start_match(@username)
   erb :new_match
 end
 
-post '/joinmatch' do #=> iplay
+get '/joinmatch' do #=> iplay
   #{username=>, match_id=> }
   @result = RPS.script.show_open_matches
-  RPS.script.join_match(params)
-  @username = params[:username]
   erb :join_match
 end
 
-post '/currentmatch' do #=> iplay
-  #{username=> }
-  @result = RPS.script.show_current_matches(params)
-  @username = params[:username]
-  erb :current_match
-end
+# get '/currentmatch' do #=> iplay
+#   #{username=> }
+#   @result = RPS.script.show_current_matches(params)
+#   @username = params[:username]
+#   erb :current_match
+# end
 
 post '/iplay' do
   # {username=>, match_id=> }
-  match_id = params[:match_id]
-  @result = RPS.orm.get_whole_match(match_id)
+  @username = session[:username]
+  result = RPS.script.join_match(params, @username)
+  @player1 = result[0]['player1']
+  @player2 = result[0]['player2']
+  RPS.script.play_turn(@username)
 
+  erb :game_play
 end
+
+
 
 
 

@@ -117,6 +117,13 @@ module RPS
       @db.exec(command)
     end
 
+    def close_match(match_id) 
+      command = <<-sQL
+        UPDATE matches SET open=false WHERE id='#{match_id}'
+        sQL
+      @db.exec(command)
+    end
+
   end # class end
 
   def self.orm

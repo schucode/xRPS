@@ -10,31 +10,13 @@
 		<br>
 		<ul id="drop1" data-dropdown-content class="f-dropdown">
 
-		  <li><form method="post" action="/newmatch">
-						<input type="hidden" name="username" value="<%= @username %>">
-						<input type="submit" value="Start New Match">
-					</form>
-			</li>
-
-		  <li>
-		  	<form method="post" action="/joinmatch">
-		  		<input type="hidden" name="username" value="<%= @username %>">
-		  		<input type="submit" value="Join Match">
-		  	</form>
-		  </li>
-
-		  <li>
-		  	<form method="post" action="/currentmatch">
-		  		<input type="hidden" name="username" value="<%= @username %>">
-		  		<input type="submit" value="Resume Match">
-		  	</form>
-		  </li>
-
+		  <li><a href="/newmatch">Start a New Match</a></li>
+		  <li><a href="/currentmatch">Join Current Match</a></li>
+		  <li><a href="/joinmatch">Find Open Match</a></li>
+		  
 		</ul>
 	</div>
 </div>
-
-
 
 
 
