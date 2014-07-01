@@ -83,26 +83,9 @@ module RPS
       result
     end
 
-    
-
-
-
-
-
-    # input params {:match_id =>, :user1_id =>, :user2_id => }
-    # def run_start_game(input)
-    #   game = RPS::Game.new(input[:user1], input[:user2])
-    #   match = input[:match]
-    #   match.history << input[:match]
+    # def play_turn(@username)
+      
     # end
-
-    # # input params {:match =>, :game=>, :user1 =>, :user2 => }
-    # def run_play_game(input)
-    #   match = input[:match]
-    #   game = input[:game]
-    # end
-
-
 
   end # class end
 

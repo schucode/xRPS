@@ -78,6 +78,7 @@ end
 
 get '/joinmatch' do #=> iplay
   #{username=>, match_id=> }
+  @username = session[:username]
   @result = RPS.script.show_open_matches
   erb :join_match
 end
@@ -91,12 +92,13 @@ end
 
 post '/iplay' do
   # {username=>, match_id=> }
+
   @username = session[:username]
   result = RPS.script.join_match(params, @username)
   @player1 = result[0]['player1']
   @player2 = result[0]['player2']
-  
-  RPS.script.play_turn(@username)
+
+  #RPS.script.play_turn(@username)
 
   erb :game_play
 end

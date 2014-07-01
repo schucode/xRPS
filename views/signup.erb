@@ -1,4 +1,4 @@
-<h1>Sign Up</h1>
+<!-- <h1>Sign Up</h1>
 
 <form method="post" action='/signup'>
 	Username<input type="text" name="username"/></br>
@@ -6,4 +6,51 @@
 	<input type="submit" />
 </form>
 
-<%= @message %>
+<%= @message %> -->
+
+<br>
+<div class="row">
+  <div class="large-6 large-offset-3 columns">
+    <div class="signup-panel">
+      <h1 align="center" class="welcome"><strong>Sign Up to Play</strong></h1>
+      <br></br>
+      <form method="post" class="text-center" action='/signup'>
+        <div class="row collapse">
+          <div class="small-2  columns">
+            <span class="prefix"><i class="fi-torso-female"></i></span>
+          </div>
+          <div class="small-10  columns">
+            <input type="text" placeholder="first name">
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-2  columns">
+            <span class="prefix"><i class="fi-torso-female"></i></span>
+          </div>
+          <div class="small-10  columns">
+            <input type="text" placeholder="last name">
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-2 columns">
+            <span class="prefix"><i class="fi-mail"></i></span>
+          </div>
+          <div class="small-10  columns">
+            <input type="text" name="username" placeholder="desired username">
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-2 columns ">
+            <span class="prefix"><i class="fi-lock"></i></span>
+          </div>
+          <div class="small-10 columns ">
+            <input type="text" name="password" placeholder="password">
+          </div>
+        </div>
+        <input type="submit" class="button" value="Sign Up">
+      </form>
+     
+       <p>Already have an account? <a href="/start">Login here &raquo</a></p>
+    </div>
+  </div>
+</div>   

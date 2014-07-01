@@ -34,22 +34,21 @@ module RPS
         sQL
       @db.exec(command) 
 
-      command = <<-sQL
-        CREATE TABLE IF NOT EXISTS moves (
-          id SERIAL, 
-          user_id text,
-          game_id text, 
-          move text,
-          PRIMARY KEY(id))
-        sQL
-      @db.exec(command) 
+      # command = <<-sQL
+      #   CREATE TABLE IF NOT EXISTS moves (
+      #     id SERIAL, 
+      #     user text,
+      #     game_id numeric, 
+      #     move text,
+      #     PRIMARY KEY(id))
+      #   sQL
+      # @db.exec(command) 
 
       command = <<-sQL
-        CREATE TABLE IF NOT EXISTS moves (
+        CREATE TABLE IF NOT EXISTS games (
           id SERIAL, 
-          user_id text,
-          game_id text, 
-          move text,
+          match_id numeric, 
+          winner text,
           PRIMARY KEY(id))
         sQL
       @db.exec(command) 
